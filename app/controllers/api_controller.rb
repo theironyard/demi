@@ -6,10 +6,13 @@ class ApiController < ApplicationController
 
   check_authorization
 
+  class NotAuthenticated < StandardError ; end
+
   {
     StandardError                => 500,
     ActiveRecord::RecordNotFound => 404,
-    CanCan::AccessDenied         => 401
+    CanCan::AccessDenied         => 403,
+    NotAuthenticated             => 401
   }.each do |klass, status|
     rescue_from klass do |e|
       # Don't double-render on already performed actions (like CanCan's ensure auth)
@@ -40,7 +43,7 @@ private
   end
 
   def authenticate_user!
-    raise CanCan::AccessDenied unless current_user
+    raise NotAuthenticated unless current_user
   end
 
   def json_format

@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can :create, :all
+      can :create, Course
     end
   end
 end

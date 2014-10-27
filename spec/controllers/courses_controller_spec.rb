@@ -1,15 +1,9 @@
 require 'rails_helper'
 
-
 describe CoursesController do
   render_views
 
   let(:course) { create :course }
-
-  include_examples 'default authorization' do
-    let(:object) { course }
-  end
-
 
   it 'can list courses' do
     3.times { create :course }
@@ -28,6 +22,8 @@ describe CoursesController do
   it 'can create a course' do
     as :peasant
     post :create, course: { name: 'Anguralph' }
+    expect(response.json.name).to eq 'Anguralph'
+    expect(response.json.id).not_to eq nil
   end
 
   it 'lets admins update' do

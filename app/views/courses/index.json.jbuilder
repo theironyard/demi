@@ -1,3 +1,3 @@
 json.array! @courses do |course|
-  json.(course, :name, :created_at, :updated_at)
+  json.(course, :id, :name, :created_at, :updated_at)
 end
