@@ -10,7 +10,7 @@ describe CoursesController do
     as :peasant
 
     get :index
-    expect(response.json.length).to eq 3
+    expect(response.json.length).to eq Course.count
   end
 
   it 'can show a single course' do

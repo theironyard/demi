@@ -29,8 +29,30 @@ class ApiController < ApplicationController
     end
   end
 
+  def show
+    authorize! :show, object
+  end
+
+  def create
+    authorize! :create, object
+    object.save!
+    render :show
+  end
+
+  def update
+    authorize! :update, object
+    object.update_attributes! update_params
+    render :show
+  end
+
+  def destroy
+    authorize! :delete, object
+    object.destroy
+    render :show
+  end
 
 private
+
 
   def current_user
     @current_user ||= if token = request.headers["Authorization"]
