@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027204252) do
+ActiveRecord::Schema.define(version: 20141028150154) do
 
   create_table "api_keys", force: true do |t|
     t.integer  "user_id"
@@ -77,5 +77,35 @@ ActiveRecord::Schema.define(version: 20141027204252) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "week_assignments", id: false, force: true do |t|
+    t.integer "assignment_id", null: false
+    t.integer "week_id",       null: false
+  end
+
+  add_index "week_assignments", ["week_id", "assignment_id"], name: "index_assignments_weeks_on_week_id_and_assignment_id"
+
+  create_table "week_goals", id: false, force: true do |t|
+    t.integer "goal_id", null: false
+    t.integer "week_id", null: false
+  end
+
+  add_index "week_goals", ["week_id", "goal_id"], name: "index_goals_weeks_on_week_id_and_goal_id"
+
+  create_table "week_resources", id: false, force: true do |t|
+    t.integer "resource_id", null: false
+    t.integer "week_id",     null: false
+  end
+
+  add_index "week_resources", ["week_id", "resource_id"], name: "index_resources_weeks_on_week_id_and_resource_id"
+
+  create_table "weeks", force: true do |t|
+    t.integer  "timeline_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weeks", ["timeline_id"], name: "index_weeks_on_timeline_id"
 
 end
