@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :timelines, only: crud, shallow: true
   end
 
-  root to: 'static#home'
+  root to: 'courses#index'
 end

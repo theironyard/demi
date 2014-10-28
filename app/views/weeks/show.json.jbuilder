@@ -1,5 +1,5 @@
-json.course   @course
-json.timeline @timeline
+json.course   @course.name
+json.timeline @timeline.name
 json.week     @week.number
 
 json.goals       @week.goals.pluck :description

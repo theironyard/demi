@@ -17,6 +17,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'cancancan'
 
+gem 'faker'
+
 group :development do
   gem 'pry'
   gem 'spring'
