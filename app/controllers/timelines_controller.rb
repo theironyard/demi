@@ -14,6 +14,7 @@ class TimelinesController < ApiController
     @timeline = Timeline.new create_params
     authorize! :create, @timeline
     @timeline.save!
+    @timeline.ensure_weeks!
     render :show
   end
 
