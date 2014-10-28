@@ -13,6 +13,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     key = user.api_keys.generate!
 
-    render json: user.as_json.merge(token: key.nonce)
+    render json: user.as_json.merge(token: key.nonce, expires: key.expires_at)
   end
 end
