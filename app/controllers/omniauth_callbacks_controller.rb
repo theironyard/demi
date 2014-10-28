@@ -13,6 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     key = user.api_keys.generate!
 
-    render json: user.as_json.merge(token: key.nonce, expires: key.expires_at)
+    response.headers["Authorization"] = key.nonce
+    redirect_to "http://0.0.0.0:9000?token=#{key.nonce}&expires=#{key.expires_at}"
   end
 end
