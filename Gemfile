@@ -33,6 +33,7 @@ end
 
 group :test do
   gem 'hashie'
+  gem 'simplecov'
 end
 
 group :production do
