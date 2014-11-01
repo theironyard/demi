@@ -32,5 +32,8 @@ describe TimelinesController do
     post :create, course_id: course.id, timeline: { name: 'Anguralph' }
     expect(response.json.name).to eq 'Anguralph'
     expect(response.json.id).not_to eq nil
+
+    timeline = Timeline.find response.json.id
+    expect(timeline.weeks.count).to eq 12
   end
 end
