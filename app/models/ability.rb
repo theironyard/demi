@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can :create, Course
+      can :create, [Course, Assignment, Goal, Resource]
     end
   end
 end

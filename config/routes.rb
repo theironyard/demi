@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   get ':course/:timeline/:week', to: 'weeks#show'
+  %w( assignments goals resources ).each do |collection|
+    post ":course/:timeline/:week/#{collection}", to: "weeks##{collection}"
+  end
 
   resources :courses, only: crud do
-    resources :timelines, only: crud, shallow: true do
-      resources :weeks, only: [:index, :show], shallow: true
-    end
+    resources :timelines, only: crud, shallow: true
   end
 
   root to: 'courses#index'
