@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   ROLES = %w( admin peasant )
 
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :trackable
 
   validates :role, inclusion: { in: ROLES }
 

@@ -8,7 +8,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.where(email: info.email).first_or_create! do |u|
       u.first_name = info.first_name
       u.last_name  = info.last_name
-      u.password   = Devise.friendly_token
     end
 
     key = user.api_keys.generate!
