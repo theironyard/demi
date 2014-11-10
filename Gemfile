@@ -21,6 +21,8 @@ gem 'cancancan'
 
 gem 'faker'
 
+gem 'rack-cors'
+
 group :development do
   gem 'pry'
   gem 'spring'

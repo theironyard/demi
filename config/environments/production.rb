@@ -75,4 +75,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.middleware.insert_before Warden::Manager, Rack::Cors do
+    allow do
+      origins '127.0.0.1:9000', 'localhost:9000'
+      resource '*', headers: :any, methods: %i(options get post put patch delete)
+    end
+  end
 end
