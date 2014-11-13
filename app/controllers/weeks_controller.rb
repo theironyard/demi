@@ -35,8 +35,8 @@ class WeeksController < ApiController
 private
 
   def find_week
-    @course   = Course.where(name: params[:course]).first!
-    @timeline = @course.timelines.where(name: params[:timeline]).first!
+    @timeline = Timeline.find(params[:id])
+    @course   = @timeline.course
     @week     = @timeline.weeks.where(number: params[:week]).first!
   end
 end

@@ -5,9 +5,8 @@ describe WeeksController do
 
   let(:week) { create :week }
   let(:week_params) { {
-    course:   week.timeline.course.name,
-    timeline: week.timeline.name,
-    week:     week.number
+    id:   week.timeline_id,
+    week: week.number
   } }
 
   it 'can show a week' do

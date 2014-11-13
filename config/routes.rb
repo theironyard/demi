@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     resources item, only: [:show, :update, :destroy]
   end
 
-  get ':course/:timeline/:week', to: 'weeks#show'
+  get 'timelines/:id/weeks/:week', to: 'weeks#show'
   weekly_items.each do |collection|
-    post ":course/:timeline/:week/#{collection}", to: "weeks##{collection}"
+    post "timelines/:id/weeks/:week/#{collection}", to: "weeks##{collection}"
   end
 
   root to: 'courses#index'
