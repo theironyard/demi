@@ -5,17 +5,17 @@ Rails.application.routes.draw do
 
   weekly_items = %i( assignments goals resources )
 
-  get ':course/:timeline/:week', to: 'weeks#show'
-  weekly_items.each do |collection|
-    post ":course/:timeline/:week/#{collection}", to: "weeks##{collection}"
-  end
-
   resources :courses, only: crud do
     resources :timelines, only: crud, shallow: true
   end
 
   weekly_items.each do |item|
     resources item, only: [:show, :update, :destroy]
+  end
+
+  get ':course/:timeline/:week', to: 'weeks#show'
+  weekly_items.each do |collection|
+    post ":course/:timeline/:week/#{collection}", to: "weeks##{collection}"
   end
 
   root to: 'courses#index'
