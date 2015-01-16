@@ -78,7 +78,7 @@ Rails.application.configure do
 
   config.middleware.insert_before Warden::Manager, Rack::Cors do
     allow do
-      origins '127.0.0.1:9000', 'localhost:9000'
+      origins '127.0.0.1:9000', 'localhost:9000', 'drewbot.github.io'
       resource '*', headers: :any, methods: %i(options get post put patch delete)
     end
   end
